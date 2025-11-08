@@ -13,6 +13,8 @@ html {
   scroll-behavior: smooth;
 }
 
+@custom-variant nav-fit-h (@media (min-height: 620px));
+
 button {
   @apply cursor-pointer
 }

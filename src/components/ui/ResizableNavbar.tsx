@@ -208,7 +208,7 @@ export const MobileNavMenu = ({ children, className, isOpen }: MobileNavMenuProp
 							'0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset'
 					}}
 				>
-					<div className="flex w-full flex-col items-start justify-start gap-1">{children}</div>
+					<div className="flex w-full flex-wrap nav-fit-h:flex-col items-center nav-fit-h:items-start justify-between nav-fit-h:justify-start gap-2 nav-fit-h:gap-1 [&>*]:w-auto nav-fit-h:[&>*]:w-full [&>*]:flex-shrink [&>*:last-child]:order-1 [&>*:last-child]:ml-auto [&>*:last-child]:my-auto nav-fit-h:[&>*:last-child]:order-none nav-fit-h:[&>*:last-child]:ml-0 nav-fit-h:[&>*:last-child]:my-0">{children}</div>
 				</motion.div>
 			)}
 		</AnimatePresence>
