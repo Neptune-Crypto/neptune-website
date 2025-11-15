@@ -8,6 +8,7 @@ import remarkMath from 'remark-math';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import remarkReadingTime from 'remark-reading-time';
 import readingMdxTime from 'remark-reading-time/mdx';
+import rehypeSlug from 'rehype-slug';
 const nextConfig: NextConfig = {
 	/* config options here */
 	pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
@@ -34,7 +35,7 @@ const withMDX = createMDX({
 			remarkReadingTime,
 			readingMdxTime
 		],
-		rehypePlugins: [rehypeKatex, rehypeHighlight]
+		rehypePlugins: [rehypeKatex, rehypeHighlight, rehypeSlug]
 	}
 
 	// Add markdown plugins here, as desired
