@@ -46,7 +46,7 @@ export default function Footer() {
 						/>
 						<SocialLink
 							icon={<FaXTwitter size={28} />}
-							href="https://x.com/NeptuneCash"
+							href="https://x.com/TritonVM"
 							label="Twitter"
 						/>
 						<SocialLink
