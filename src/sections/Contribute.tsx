@@ -46,7 +46,7 @@ export default function Contribute() {
 							/>
 							<SocialLink
 								icon={<FaXTwitter size={48} />}
-								href="https://x.com/NeptuneCash"
+								href="https://x.com/TritonVM"
 								label="Twitter"
 							/>
 							<SocialLink
