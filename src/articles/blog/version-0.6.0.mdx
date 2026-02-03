@@ -1,0 +1,44 @@
++++
+title = "Neptune Cash v0.6.0: Resuming Operations"
+description = "Network relaunch following Triton VM patch and the introduction of the Lustration Barrier."
+author = "Neptune Cash Developers"
+date = "2026-02-03"
+type = "blog"
+
+[thumbnail]
+src = "/article-images/blog/lustraion-barrier.png"
+caption = "'The Lustraion Barrier', imagined by Google Gemini"
++++
+
+# Neptune Cash v0.6.0: Resuming Operations
+
+The Neptune Cash network is back online. Following the [disclosure of a critical vulnerability](https://neptune.cash/articles/critical-vulnerability-disclosure) in January, we have hardened the affected components and patched the protocol. 
+
+[**Neptune Core v0.6.0**](https://github.com/Neptune-Crypto/neptune-core) is now available. This release re-activates the blockchain and integrates several major architectural upgrades, including a [libp2p network stack](https://github.com/Neptune-Crypto/neptune-core/commit/cfed34aa128db488d18af9daab76698b334e64c5), [a dedicated event loop for syncing](https://github.com/Neptune-Crypto/neptune-core/pull/787), [a UTXO indexer](https://github.com/Neptune-Crypto/neptune-core/pull/821), and [automatic transaction consolidation](https://github.com/Neptune-Crypto/neptune-core/commit/f5c304686e7a9b3a5ffe867fc7461da0142b425c).
+
+## Strategic Rollback to Block 23400
+
+While a reboot from genesis was initially considered, we have opted for a more surgical approach to preserve the continuity of the ledger. The network will resume from block **23400**. The rollback to this block happens automatically if `neptune-core` discovers that it is synced to a later block that mined the time between block 23400 and the publication of this announcement.
+
+This height represents the chain state approximately one week prior to the vulnerability disclosure. Annulling this one-week window serves as a compromise: it respects the history of established accounts while providing a high probability of reverting any potential (though unconfirmed) exploits.
+
+**Technical Note on Consensus:** `neptune-core` v0.6.0 accepts the original history up to block 23400 as canonical. However, because these blocks were produced under an unsound proof system, the consensus rules have shifted. All blocks at height 23401 and beyond must utilize the patched proof system; nodes will reject any blocks attempting to build on the legacy logic.
+
+## The Lustration Barrier
+
+Our commitment to a mathematically sound circulating supply remains absolute. To guarantee the hard supply limit without the friction of a total reset, we will deploy a mechanism called the **Lustration Barrier** at a future date.
+
+The Lustration Barrier allows us to verify the integrity of the money supply while maintaining account continuity. When this fork is activated, any transaction spending a UTXO created before the fork must pass through the barrier. This process requires:
+
+1. **Public Disclosure:** The amount of coins moving through the barrier must be revealed.
+2. **Global Counter Decrement:** A public "Lustration Counter"—initialized to the total expected supply (premine + block subsidies - burns)—will be decremented by the revealed amount.
+
+Once this counter reaches zero, the barrier closes. Any UTXOs that have not migrated become unspendable. 
+
+This construction provides the same security guarantees as a manual redemption procedure: it forces any "phantom" coins created via exploit into the light. If an exploiter attempts to move ill-gotten gains, they must do so within the bounds of the total valid supply. This ensures that even if an exploit occurred, the total circulating supply can never exceed its intended mathematical limit.
+
+## Conclusion
+
+We have patched the flaw. We have preserved the history. Now, we resume the work.
+
+Update to v0.6.0, whether [compiled from source](https://github.com/Neptune-Crypto/neptune-core) or via [released binaries](https://github.com/Neptune-Crypto/neptune-core/releases), and sync from 23400. Mining and transactions can resume. The deep water is waiting.
