@@ -1,0 +1,85 @@
++++
+title = "NeptuneWallet: Official Lightweight Support is Here"
+description = "A security-patched, officially supported version of the NeptuneWallet has been released for users who prefer not to run a full node."
+author = "Thorkil Schmidiger"
+date = "2026-03-31"
+type = "blog"
+
+[thumbnail]
+src = "/article-images/blog/vxb-wallet-with-balance.png"
+caption = "The Neptune-core team launches an official lightweight wallet alternative."
++++
+
+The reference implementation, [neptune-core](https://github.com/Neptune-Crypto/neptune-core), has
+provided full wallet functionality since Neptune's launch on February 11, 2025. However, we
+recognize that not every user wants (or is able) to run a full node. A lightweight alternative has
+consistently been our most requested features.
+
+To meet this demand, the [VxBlocks](https://github.com/VxBlocks) team was the first to release a
+functional light wallet that bypassed the need to download the entire blockchain. While their work
+was a vital contribution, it faced two hurdles:
+
+1. Server Complexity: It relied on a modified version of neptune-core, making it difficult for third
+   parties to host servers.
+2. A
+   [security review](https://github.com/keyper-labs/neptune_cash_wallet_code_reviews/blob/master/vxblocks/vxblocks_neptune_wallet_code_review_on_v2.0.1.pdf):
+   by keyper-labs identified critical vulnerabilities that prevented us from recommending it for
+   general use.
+
+### Bringing it "Into the Fold"
+
+To provide our users with a safe, reliable, and officially supported tool, we decided to bring the
+project under the core team’s wing. Using the VxBlocks codebase as a foundation, we have modified
+neptune-core to act as a seamless server for the wallet and addressed the most important
+vulnerabilities identified in the security audit.
+
+### Key Features & Privacy Protections
+
+NeptuneWallet is designed for users who value privacy and efficiency without the overhead of a full
+node. It strikes a good balance between avoiding the need to trust a server, and efficiency.
+
+- **Server-Side Blindness:** When you initiate a transaction, the amounts and recipients remain
+  completely hidden from the server.
+- **Input Privacy:** The wallet never reveals to the server which specific inputs are being used in
+  a transaction, even when recovering the data required to initiate a transaction.
+- **Reduced Data Footprint:** By skipping block proofs during the download process, the wallet
+  significantly reduces bandwidth usage and sync times.
+- **Block-Level Privacy:** Because the wallet downloads all blocks, it never leaks metadata to the
+  server regarding which specific blocks contain your transactions.
+- **Full Compatibility:** Seed phrases are 100% interchangeable between neptune-core and
+  NeptuneWallet.
+
+### Limitations
+
+Although the data requirements are significantly lower than a full node, users importing an existing
+wallet still have to download up to 1GB of block data. This initial block download may take some
+time, and makes the wallet unsuitable for mobile use.
+
+As a result NeptuneWallet is currently only supported on **Windows, Linux, and MacOS**. This is not
+a fundamental limitation of the protocol or the software architecture though, and we hope to address
+these constraints in further iterations.
+
+### Our Philosophy
+
+The goal of NeptuneWallet is simple: to provide a secure, no-frills interface for transacting NPT.
+We aren't chasing fancy graphics or bloated feature lists; our priority remains the integrity of
+your coins, the privacy of your data, and the best use of your time.
+
+### Get Started
+
+You can download the latest release for your operating system via the link below. Please ensure you
+have at least 2GB of free disk space to accommodate the initial block synchronization.
+
+- Download NeptuneWallet v3.0.0:
+  [GitHub Releases Page](https://github.com/Neptune-Crypto/neptune-wallet-app/releases/tag/v3.0.0)
+
+### Contribute!
+
+Neptune is an open-source effort, and we welcome your help in making this wallet even better. If
+you’d like to contribute, you can:
+
+- Check out the open issues on our
+  [GitHub repository](https://github.com/Neptune-Crypto/neptune-wallet-app/issues).
+- Tackle the remaining security improvements suggested in the keyper-labs report. While we have
+  patched all "Critical" and most "High" priority issues from the review, there is still work to be
+  done.
