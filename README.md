@@ -49,3 +49,11 @@ using the `weight` and `pinned` fields as explained above, the ordering processe
 1. Pinned articles
 2. Article weight (higher = shown higher)
 3. Article post date
+
+### Running locally on an Ubuntu machine, using bun
+```bash
+curl -fsSL https://bun.sh/install | bash
+source $HOME/.bashrc
+bun install
+bun run dev
+```
