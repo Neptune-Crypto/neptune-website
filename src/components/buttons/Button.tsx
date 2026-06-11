@@ -9,7 +9,8 @@ const ctaButtonVariants = cva('flex items-center gap-3 rounded-full px-6 py-3 fo
 	variants: {
 		variant: {
 			primary: 'bg-white text-black',
-			outline: 'border border-2 border-white text-white'
+			outline: 'border border-2 border-white text-white',
+			navy: 'bg-[#0f1f5c] text-white hover:bg-[#3b82f6] transition-colors'
 		},
 		size: {
 			sm: 'text-base',
