@@ -54,10 +54,15 @@ export function WebsiteNavbar() {
 				<NavBody>
 					<NavbarLogo />
 					<NavItems items={navItems} />
-					<Button variant={'primary'} size={'sm'} href={'/whitepaper'} className="z-10">
-						<LucideScroll className={'left-0 mr-auto'} />
-						<span className={'mx-auto'}>Whitepaper</span>
-					</Button>
+					<div className="z-10 flex items-center gap-2">
+						<Button variant={'navy'} size={'sm'} href={'https://nptmining.com'} target={'_blank'}>
+							<span className={'mx-auto'}>NPT Mining</span>
+						</Button>
+						<Button variant={'primary'} size={'sm'} href={'/whitepaper'}>
+							<LucideScroll className={'left-0 mr-auto'} />
+							<span className={'mx-auto'}>Whitepaper</span>
+						</Button>
+					</div>
 				</NavBody>
 
 				<MobileNav>
@@ -92,6 +97,15 @@ export function WebsiteNavbar() {
 				>
 					<LucideScroll />
 					<span className={'mx-auto'}>Whitepaper</span>
+				</Button>
+				<Button
+					variant={'navy'}
+					size={'sm'}
+					href={'https://nptmining.com'}
+					target={'_blank'}
+					className="mt-2 w-full"
+				>
+					<span className={'mx-auto'}>NPT Mining</span>
 				</Button>
 			</MobileNavMenu>
 		</>
