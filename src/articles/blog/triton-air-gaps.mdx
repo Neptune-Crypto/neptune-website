@@ -1,0 +1,64 @@
++++
+title = "Triton VM v7.0.0: Closing Soundness Gaps"
+description = """
+Triton VM v7.0.0 fixes soundness gaps in AIR constraints. Additionally, tasm-lib v7.0.0 includes a fix concerning
+recursive proof verification.
+"""
+author = "Jan Ferdinand Sauer"
+date = "2026-06-22"
+type = "blog"
+
+[thumbnail]
+src = "/article-images/blog/tvm-air-gaps.png"
+caption = "The logo of Triton VM with some of its tentacles deformed."
++++
+
+# Triton VM v7.0.0: Closing Soundness Gaps
+
+In the past weeks, we shipped a coordinated set of soundness fixes for Triton VM focused on missing or buggy
+Arithmetic Intermediate Representation (“AIR”) constraints.
+[Triton VM v7.0.0](https://crates.io/crates/triton-vm/7.0.0) includes fixes to all known vulnerabilities.
+
+The root cause was with Triton VM's proof system, specifically, constraints that were incorrectly gated or, in some
+cases, missing entirely.
+The individual fixes are rather technical and, often,
+[extremely subtle](https://github.com/TritonVM/triton-vm/commit/2d243c558c602e7f53847bce38c0e09b73a56aa7).
+
+One [notable, critical fix](https://github.com/TritonVM/tasm-lib/commit/7bc2c46aedd549d1eebf7d275fc574804ea29357)
+outside Triton VM but highly relevant for Neptune Core was in the Triton assembly standard library,
+[`tasm-lib`](https://github.com/TritonVM/tasm-lib/).
+This vulnerability affected recursive proof verification, which is essential for Neptune Cash.
+The corresponding release is [`tasm-lib` v7.0.0](https://crates.io/crates/tasm-lib/7.0.0).
+
+[Neptune Cash v0.12.0](https://crates.io/crates/neptune-cash/0.12.0) includes the fixes for all known vulnerabilities.
+
+## Impact
+
+In all cases, the impact is on cryptographic integrity:
+by using maliciously crafted traces or by sidestepping the Fiat-Shamir heuristic, verification could accept invalid
+proofs.
+This is the worst possible scenario for Neptune Cash, since it allows for arbitrary, undetectable inflation.
+
+In order to make sure that the monetary supply is indeed limited, Neptune Cash hardforks and employs another
+[Lustration Barrier](https://neptune.cash/articles/version-0.6.0).
+In essence, any UTXO from before this hardfork is counted in a global tally.
+Once the total supply limit has been observed, the network accepts no more transactions containing such old UTXOs.
+
+Due to the cryptographic nature of zero-knowledge proof systems, it is impossible to know whether malicious actors
+exploited the vulnerabilities before we could fix them.
+[Hardfork Gamma](https://talk.neptune.cash/t/333) makes sure that any exploitation attempt of Neptune Cash is thwarted.
+
+## Acknowledgements
+
+We are thankful to the external collaborators that made us aware of the issues.
+It is worth noting that they were heavily supported by state-of-the-art LLMs.
+Personally, I find it extremely impressive to see that these models can successfully draw conclusions in niche domains.
+
+## Going Forward
+
+Identifying gaps in the constraint system is inherently difficult.
+While mathematical models for rigorous analysis could feasibly exist –
+[Gröbner bases](https://en.wikipedia.org/wiki/Gr%C3%B6bner_basis) come to mind –
+this is a task that requires tremendous resources, and might be concretely infeasible due to computational complexity.
+Until such methods are available, we will continue to analyze using the latest inference and reasoning models, which
+have already proven themselves capable.
