@@ -24,6 +24,10 @@ That said, it is worth stressing that we have no indication that the vulnerabili
 
 Another limitation is worth mentioning. Due to the anyonymity mechanism, it is difficult to distinguish premine UTXOs from UTXOs created shortly after genesis. Premine UTXOs are ineligible for redemption because they will be present on the reboot chain as part of the genesis block. However, in order to reliably filter out all claims of premine coins there must be a nonzero false negative rate. Concretely, this means that UTXOs that were created shortly after genesis and never spent since might be unclaimable as well. According to our simulations, the probability that a UTXO is unclaimable drops to below 1% at around UTXO 280, or 70 blocks in.
 
+## Termination
+
+The redemption process has ended. The last payout took place on Tuesday 18 August 2026, after which 84% of the claims fund has been redeemed. See the [talk post](https://talk.neptune.cash/t/summary-of-claim-redemption-payouts/129/6) for more details. The remainder of this post is for archival purposes only.
+
 ## Exercising Claims
 
 The tools needed to produce and verify a UTXO redemption claim live on branch [`redeem`](https://github.com/Neptune-Crypto/neptune-core/tree/redeem). You must be running this version of the software on a node that is synced to block 21310 (or beyond) on the legacy chain and in possession of unspent UTXOs. Lastly, the node must be running while you run the following commands in another terminal:
@@ -169,10 +173,10 @@ In the interest of transparency, all UTXO redemption claims and their associated
 | nolgam1plcgelg...3j6r5j28 |    321.1980550000000045293636597841920000 | [15753/2](https://explorer.neptune.cash/announcement/digest/ad959c2df06ca6a27cbd11c1d14a79ee85bd584b5a8400663fb789a626426fb776c5010000000000/2) | | [download](https://claims.neptune.cash/8d92ef12bb8aaf7f1a42cec1b9e57407602590ff2c66bf8ee58ad0186c908b4.redeem) |
 | nolgam1glzvjgw...m6742eau |  87490.8919999999999999848674880389120000 | [15753/2](https://explorer.neptune.cash/announcement/digest/ad959c2df06ca6a27cbd11c1d14a79ee85bd584b5a8400663fb789a626426fb776c5010000000000/2) | | [download](https://claims.neptune.cash/2025-11-19.tar.gz) |
 | nolgam1glzvjgw...m6742eau | 123779.6919999999999999668168142356480000 | [15753/2](https://explorer.neptune.cash/announcement/digest/ad959c2df06ca6a27cbd11c1d14a79ee85bd584b5a8400663fb789a626426fb776c5010000000000/2) | | [download](https://claims.neptune.cash/2025-11-19.tar.gz) |
-| nolgam1ccadcua...xsa7ssnt |    223.0200000000000044529053230694400000 | [40520/10](https://explorer.neptune.cash/announcement/digest/0f3ff8aff841f4c15b9008f90dbeeaef92fc14e08a5530ba217eef7ece8a27a84391080000000000/10) | | [download](https://claims.neptune.cash/2025-11-21.tar.gz) |
-| nolgam1ccadcua...xsa7ssnt |  66492.6009000000002139911105261076480000 | [40520/10](https://explorer.neptune.cash/announcement/digest/0f3ff8aff841f4c15b9008f90dbeeaef92fc14e08a5530ba217eef7ece8a27a84391080000000000/10) | | [download](https://claims.neptune.cash/2025-11-21.tar.gz) |
-| nolgam1qd4hjc0...77k4z6a2 |   4358.5217677623097733476506528645120000 | [40520/10](https://explorer.neptune.cash/announcement/digest/0f3ff8aff841f4c15b9008f90dbeeaef92fc14e08a5530ba217eef7ece8a27a84391080000000000/10) | | [download](https://claims.neptune.cash/2026-05-29.tar.gz) |
-| nolgam1qd4hjc0...77k4z6a2 |   6396.6558112623096685420829149757440000 | [40520/10](https://explorer.neptune.cash/announcement/digest/0f3ff8aff841f4c15b9008f90dbeeaef92fc14e08a5530ba217eef7ece8a27a84391080000000000/10) | | [download](https://claims.neptune.cash/2026-05-29.tar.gz) |
+| nolgam1ccadcua...xsa7ssnt |    223.0200000000000044529053230694400000 | [49495/8](https://explorer.neptune.cash/announcement/digest/3642f22974fd575707f7e765a77e2c5aae25fc7953ae769d8ab8772a4007862ea16d020000000000/8) | | [download](https://claims.neptune.cash/2025-11-21.tar.gz) |
+| nolgam1ccadcua...xsa7ssnt |  66492.6009000000002139911105261076480000 | [49495/8](https://explorer.neptune.cash/announcement/digest/3642f22974fd575707f7e765a77e2c5aae25fc7953ae769d8ab8772a4007862ea16d020000000000/8) | | [download](https://claims.neptune.cash/2025-11-21.tar.gz) |
+| nolgam1qd4hjc0...77k4z6a2 |   4358.5217677623097733476506528645120000 | [49495/8](https://explorer.neptune.cash/announcement/digest/3642f22974fd575707f7e765a77e2c5aae25fc7953ae769d8ab8772a4007862ea16d020000000000/8) | | [download](https://claims.neptune.cash/2026-05-29.tar.gz) |
+| nolgam1qd4hjc0...77k4z6a2 |   6396.6558112623096685420829149757440000 | [49495/8](https://explorer.neptune.cash/announcement/digest/3642f22974fd575707f7e765a77e2c5aae25fc7953ae769d8ab8772a4007862ea16d020000000000/8) | | [download](https://claims.neptune.cash/2026-05-29.tar.gz) |
 
 
 ## Misc
