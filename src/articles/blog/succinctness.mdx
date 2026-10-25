@@ -88,6 +88,9 @@ with the same rigor as a data center.
 Every *block proof* becomes a *chain proof*, authenticating not just the block
 it is attached to but the entire history before it as well.
 
+
+{<ArticleImage src="/article-images/blog/succinct-validation.png" type="table" centered={true} alt="succinct validation" />}
+
 ### Why This Matters
 
 Succinct validation is not a performance optimization, not least because it does
@@ -159,9 +162,9 @@ When used without context, the term "succinctness" is equated with "succinct
 validation" -- the task of *chain validation* performed succinctly. It turns
 out there are other tasks related to operating a blockchain node that one might
 consider doing succinctly:
- 1. **Asset Management.** Receive and send transactions, and manage funds in
+ 1. **Mining.** Contribute to the consensus mechanism.
+ 2. **Asset Management.** Receive and send transactions, and manage funds in
     between.
- 2. **Mining.** Contribute to the consensus mechanism.
 
 The upcoming soft fork will achieve only succinct validation. Succinct mining is
 an explicit non-goal. Succinct asset-management is already possible and the
@@ -170,12 +173,18 @@ cost worth mentioning.
 
 ### Succinct Mining
 
-Succinct mining requires a countermeasure against the following attack. Mine two
-blocks, withhold the first, and broadcast the second. The (succinctly
-validating) network, including the competing miners, will adopt the second one
-as their new tip, but the first contains essential mutator set proof data that
-UTXO holders need to update their proofs. Without that data, which only the
-attacker possesses, the funds are stranded.
+Succinct mining means participating in the consensus mechanism without
+maintaining the complete archival state. However, succinct validation raises a
+difficulty that succinct mining exacerbates: a miner could exploit the fact
+that succinct validators only need the latest block to withhold data contained
+in predecessors.
+
+Specifically, the attack goes as follows. Mine two blocks, withhold the first,
+and broadcast the second. The (succinctly validating) network, including the
+competing miners, will adopt the second one as their new tip, but the first
+contains essential mutator set proof data that UTXO holders need to update their
+proofs. Without that data, which only the attacker possesses, the funds are
+stranded.
 
 The countermeasure comes in two parts. One: online miners reject out-of-order
 blocks. So a block that skips a withheld one is rejected even if it is valid.
@@ -184,19 +193,22 @@ when producing a new block. So if they don't have the complete mutator set, they
 are going to incur a penalty on mining rewards; and in order to get the complete
 mutator set they must have validated blocks incrementally.
 
+In other words, succint mining is an explicit non-goal. Instead, *archival
+mining* is the countermeasure against the above attack.
+
 ### What about Succinct Asset Management?
 
 To spend your coins, your wallet needs up-to-date membership proofs, which
 establish membership in the [mutator set](/articles/mutator-sets), which in turn
-establish that the coins really do exist and are not being spent twice. The
-membership proof may change with every block. A wallet that stays online keeps
-it current by processing each block as it arrives. This is a succinct solution
-technically speaking, but in practice it is slower than maintaining an archival
-mutator set and reading the membership proofs from there when needed. Moreover,
-the succinct option comes with the rather onerous obligation of staying online
-continuously and fails in the context of reorganizations unless the node
-remembers or is served with all blocks on the path from abandoned tip to new
-canonical one.
+establish that the coins really do exist and are not being spent a scond time.
+The membership proof may change with every block. A wallet that stays online
+keeps it current by processing each block as it arrives. This is a succinct
+solution technically speaking, but in practice it is slower than maintaining an
+archival mutator set and reading the membership proofs from there when needed.
+Moreover, the succinct option comes with the rather onerous obligation of
+staying online continuously and fails in the context of reorganizations unless
+the node remembers, or is served with, all blocks on the path from abandoned tip 
+to new canonical one.
 
 A wallet that has been offline for a while, or that is being restored from its
 seed phrase, must catch up somehow. Right now it catches up in one of two ways:
@@ -236,3 +248,6 @@ Verifying a blockchain should not require a data center or a week of patience.
 With the upcoming soft fork, verifying the entire Neptune Cash blockchain will
 take one block, a few seconds, and no trust in anyone -- not in a server, not in
 a wallet provider, not in us. That was the promise from the beginning.
+
+**Acknowledgements.** Thanks to `codewordneptune` for framing, feedback, and the
+diagram.
