@@ -143,13 +143,17 @@ on mainnet at block 61000.
  - **If you hold Neptune Cash:** nothing is required of you. Your coins are
    unaffected. Upgrading lets your node verify the chain near-instantly; finding
    and updating your own coins works as it does today.
- - **If you run a node:** upgrade before activation. Nodes that do not
+ - **If you run a node:**
+   [upgrade](https://github.com/Neptune-Crypto/neptune-core/releases/tag/v0.19.3)
+   before activation. Nodes that do not
    upgrade keep working and keep following the chain that is backed by the
    majority of mining power. It matters only in case the majority of mining
    power rejects the soft fork, and if that happens eager upgraders will be on
    the succinct validation chain and slow-to-update nodes or nodes that
    intentionally reject the fork will sync to the linear validation chain.
- - **If you mine:** upgrade before activation. After activation, blocks without
+ - **If you mine:**
+   [upgrade](https://github.com/Neptune-Crypto/neptune-core/releases/tag/v0.19.3)
+   before activation. After activation, blocks without
    the recursive claim will be orphaned, provided that the majority of hash
    power accepts the upgrade. Note that the extra claim increases the proving
    time of Composers by around a factor 3.5.
