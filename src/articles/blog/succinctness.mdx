@@ -135,8 +135,8 @@ establishes the truth of all claims in the block appendix, and it is
 always possible to add more appendices. The upcoming soft fork simply adds an
 appendix that asserts that the previous block is valid.
 
-Succinctness has been live on testnet since block 6420 and will be activated
-on mainnet at block 61000.
+Succinctness has been live on testnet since block 7144 and will be activated
+on mainnet at block 62500.
 
 ### What Changes for You
 
@@ -144,7 +144,7 @@ on mainnet at block 61000.
    unaffected. Upgrading lets your node verify the chain near-instantly; finding
    and updating your own coins works as it does today.
  - **If you run a node:**
-   [upgrade](https://github.com/Neptune-Crypto/neptune-core/releases/tag/v0.19.3)
+   [upgrade](https://github.com/Neptune-Crypto/neptune-core/releases/tag/v0.20.0)
    before activation. Nodes that do not
    upgrade keep working and keep following the chain that is backed by the
    majority of mining power. It matters only in case the majority of mining
@@ -152,7 +152,7 @@ on mainnet at block 61000.
    the succinct validation chain and slow-to-update nodes or nodes that
    intentionally reject the fork will sync to the linear validation chain.
  - **If you mine:**
-   [upgrade](https://github.com/Neptune-Crypto/neptune-core/releases/tag/v0.19.3)
+   [upgrade](https://github.com/Neptune-Crypto/neptune-core/releases/tag/v0.20.0)
    before activation. After activation, blocks without
    the recursive claim will be orphaned, provided that the majority of hash
    power accepts the upgrade. Note that the extra claim increases the proving
@@ -197,7 +197,7 @@ when producing a new block. So if they don't have the complete mutator set, they
 are going to incur a penalty on mining rewards; and in order to get the complete
 mutator set they must have validated blocks incrementally.
 
-In other words, succint mining is an explicit non-goal. Instead, *archival
+In other words, succint mining is an explicit non-goal because *archival
 mining* is the countermeasure against the above attack.
 
 ### What about Succinct Asset Management?
