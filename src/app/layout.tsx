@@ -13,7 +13,7 @@ const dmSans = DM_Sans({
 	weight: ['400', '700', '900']
 });
 export const metadata: Metadata = {
-	metadataBase: new URL('https://neptune.imal.dev')
+	metadataBase: new URL('https://neptune.cash')
 };
 export default function RootLayout({
 	children
